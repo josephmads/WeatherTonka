@@ -1,8 +1,8 @@
 # WeatherTonka
 
-This is a simple program to run a Twitter bot that gives a daily weather update for the city of Minnetonka, MN. 
+This is a program to run a Twitter bot that gives a simple, daily weather update for the city of Minnetonka, MN. 
 
-The bot is: @WeatherTonka
+The bot is: [@WeatherTonka](https://twitter.com/WeatherTonka)
 
 ## API's
 
