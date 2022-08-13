@@ -32,19 +32,19 @@ weather_report = f"""
 {days["description"]}
 
 Currently: {current_cond["conditions"]}
-Current temp: {current_cond["temp"]}
-High of: {days["tempmax"]}
-Low of: {days["tempmin"]}
+Current Temp: {current_cond["temp"]}
+High: {days["tempmax"]}
+Low: {days["tempmin"]}
 Dewpoint: {days["dew"]}
 Humidity: {days["humidity"]}
-Chance of precip: {days["precipprob"]}
+% of precip: {days["precipprob"]}
 
-WIND REPORT
-Current Speed: {current_cond["windspeed"]}
-Current Direction: {current_cond["winddir"]}
-Speed: {days["windspeed"]}
+WIND
+Current Spd: {current_cond["windspeed"]}
+Current Dir: {current_cond["winddir"]}
+Spd: {days["windspeed"]}
 Gusts: {days["windgust"]}
-Direction: {days["winddir"]}
+Dir: {days["winddir"]}
 
 ALERTS: {alerts_list}
 """
