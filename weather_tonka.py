@@ -18,6 +18,24 @@ auth = tweepy.OAuth1UserHandler(consumer_key=api_key,
 
 api = tweepy.API(auth)
 
+# Tweet length correction function
+
+def tweet_poster(tweet):
+    """Truncates tweets that are over 280 characters
+    before posting them.
+
+    Args:
+        tweet (str): Any string that is going to be a tweet.
+    """
+
+    if len(tweet) > 280:
+        tweet = tweet[0:277] + "..."
+        api.update_status(tweet)
+
+    else:
+        api.update_status(tweet)
+
+
 # Weather API and information
 
 weather_url = "https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/Minnetonka%2C%20MN/today?unitGroup=us&key=J3TPLEJ9DM5E9GKX2JQ4S7EJ7&contentType=json"
@@ -27,6 +45,8 @@ current_cond = weather["currentConditions"]
 days_weather = weather["days"]
 days = days_weather[0]
 alerts_list = weather["alerts"]
+
+# Tweet Content
 
 weather_report = f"""
 {days["description"]}
@@ -45,8 +65,12 @@ Current Dir: {current_cond["winddir"]}
 Spd: {days["windspeed"]}
 Gusts: {days["windgust"]}
 Dir: {days["winddir"]}
-
-ALERTS: {alerts_list}
 """
 
-api.update_status(weather_report)
+# Tweets
+
+if alerts_list != []:
+    alerts = alerts_list[0]["description"]
+    tweet_poster(alerts)
+
+tweet_poster(weather_report)
