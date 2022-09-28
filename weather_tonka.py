@@ -2,7 +2,8 @@
 
 from os import environ 
 import tweepy
-from requests import get
+import requests as r
+from time import sleep
 
 # Twitter API access tokens
 
@@ -40,7 +41,14 @@ def tweet_poster(tweet):
 
 weather_url = "https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/Minnetonka%2C%20MN/today?unitGroup=us&key=J3TPLEJ9DM5E9GKX2JQ4S7EJ7&contentType=json"
 
-weather = get(weather_url).json()
+delay = True
+while delay == True:
+    try:
+        weather = r.get(weather_url).json()
+        delay = False
+    except r.exceptions.ConnectionError:
+        sleep(120)
+        
 current_cond = weather["currentConditions"]
 days_weather = weather["days"]
 days = days_weather[0]
